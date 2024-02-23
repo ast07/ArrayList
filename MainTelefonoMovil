@@ -1,0 +1,75 @@
+import java.util.Scanner;
+
+public class MainTelefonoMovil {
+    private static Scanner scanner = new Scanner(System.in);
+    private static TelefonoMovil myPhone = new TelefonoMovil("123456789");
+
+    public static void main(String[] args) {
+        boolean quit = false;
+        printMenu();
+        while (!quit) {
+            System.out.print("Ingresa una opción: ");
+            Integer option = scanner.nextInt();
+
+            switch (option) {
+                case 0:
+                    quit = true;
+                    System.out.println("Saliendo...");
+                    break;
+                case 1:
+                myPhone.printContacts();
+                    break;
+                case 2:
+                    addNewContact();
+                    break;
+                case 3:
+                    updateContact();
+                    break;
+                case 4:
+                    removeContact();
+                    break;
+                case 5:
+                    searchContactByName();
+                    break;
+                case 6:
+                    printMenu();
+                    break;
+                default:
+                    System.out.println("Opción no válida. Ingresa una válida");
+                    break;
+            }
+        }
+    }
+
+    private static void printMenu() {
+        System.out.println("Menú de opciones:");
+        System.out.println("0. Salir");
+        System.out.println("1. Imprimir contactos");
+        System.out.println("2. Agregar un nuevo contacto");
+        System.out.println("3. Actualizar un contacto existente");
+        System.out.println("4. Eliminar contacto de la lista");
+        System.out.println("5. Buscar/encontrar contacto por nombre");
+        System.out.println("6. Volver a imprimir la lista de opciones");
+    }
+
+    private static void addNewContact() {
+        System.out.println("Ingresa el nombre: ");
+        String name = scanner.next(); //
+        System.out.println("Ingrese el número de teléfono: ");
+        String phoneNumber = scanner.next();
+        Contacto newContact = Contacto.createContact(name, phoneNumber);
+        boolean added = myPhone.addNewContact(newContact);
+        if (added) {
+            System.out.println("Contacto agregado");
+        }
+    }
+
+    private static void updateContact() {
+    }
+
+    private static void removeContact() {
+    }
+
+    private static void searchContactByName() {
+    }
+}
